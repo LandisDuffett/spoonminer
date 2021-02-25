@@ -2,3 +2,10 @@ body {
     background-image: url("stars.jpg");
     background-repeat: no-repeat;
 }
+
+.moon {
+    max-width: 30vw;
+    max-height: 30vh;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
