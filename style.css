@@ -23,6 +23,25 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.mouse {
+    display: block;
+    max-height: 3rem;
+    max-width: 3rem;
+    margin-top: 0.5rem;
+}
+
 .panelmargin {
     margin: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+    main#large {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    main#insertion {
+        display: none;
+    }
 }

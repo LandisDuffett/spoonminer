@@ -1,9 +1,11 @@
 let level = 0
-let currentPlayer = "Charlie"
+let currentPlayer = {}
+let scoreboard = document.getElementById("here")
+let directions = document.getElementById("direct")
 
 function welcomeScreen() {
-    //scoreboard.classList.add("hidden")
-    //directions.classList.add("hidden")
+    scoreboard.classList.add("hidden")
+    directions.classList.add("hidden")
     let welcomeTemplate = ""
     welcomeTemplate +=
         /*html*/`
@@ -27,7 +29,7 @@ function welcomeScreen() {
         </div>
         `
     document.getElementById("insertion").innerHTML = welcomeTemplate;
-    //document.getElementById("large").innerHTML = welcomeTemplate;
+    document.getElementById("large").innerHTML = welcomeTemplate;
 }
 
 function nameScreen() {
@@ -81,9 +83,59 @@ function gameScreen() {
     document.getElementById("insertion").innerHTML = gameTemplate;
 }
 
+let players = []
+loadPlayers()
+
 function setPlayer(event) {
     event.preventDefault()
     let playerScoreElem = document.getElementById("top-score")
+    let form = event.target
+    let playerName = form.playerName.value
+    currentPlayer = players.find(player => player.name == playerName)
+    if (!currentPlayer) {
+        currentPlayer = { name: playerName, topScore: 0 }
+        players.push(currentPlayer)
+        savePlayers()
+    }
+    playerScoreElem.innerHTML = currentPlayer.topScore
+    form.reset()
+    let nameTemplate = ""
+    nameTemplate += /*html*/ `
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-8">
+            <div class="panel panel-default rounded bg-light panelmargin">
+                <div class="panel-body p-3 text-center" style="font-family: 'Notable', sans-serif;">
+                    <div class="row justify-content-center m-1">
+                        <span class="pr-2">Player Name: </span><span>${currentPlayer.name}</span>
+                    </div>
+                    <div class="row justify-content-center mt-1">
+                        <span class="pr-2">Your High Score: </span>
+                        <span>${currentPlayer.topScore}</span>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <button class="btn btn-primary rounded" onclick="startGame()">Play</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <img class="moon" src="moon.png" alt="">
+    </div>
+    `
+    document.getElementById("insertion").innerHTML = nameTemplate;
+    document.getElementById("large").innerHTML = nameTemplate;
+}
+
+function savePlayers() {
+    window.localStorage.setItem("players", JSON.stringify(players))
+}
+
+function loadPlayers() {
+    let playersData = JSON.parse(window.localStorage.getItem("players"))
+    if (playersData) {
+        players = playersData
+    }
 }
 
 welcomeScreen()

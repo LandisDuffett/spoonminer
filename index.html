@@ -12,24 +12,131 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title></title>
+    <title>Spoon Miner</title>
 </head>
 
 <body>
     <container-fluid>
-        <div>
-            <span>
-                <p class="headerfont pl-4">PLAYER:</p>
-            </span>
-        </div>
-        <div class="row justify-content-center">
-            <span>
-                <p class="headerfont pl-4" id="currentPlayer"> </p>
-            </span>
-        </div>
+        <header>
+            <div class="row justify-content-center mt-2">
+                <div class="col-1 col-lg-2">
+                    <div class="row justify-content-center">
+                        <span>
+                            <p class="headerfont pl-4">PLAYER:</p>
+                        </span>
+                    </div>
+                    <div class="row justify-content-center">
+                        <span>
+                            <p class="headerfont pl-4" id="currentPlayer"> </p>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-9 col-lg-8">
+                    <div class="row justify-content-center">
+                        <img class="mouse" src="mouse.png" alt="">
+                        <p class="banner text-center">Moon Miner</p>
+                        <img class="mouse" src="mouse.png" alt="">
+                    </div>
+                </div>
+                <div class="col-1 col-lg-2">
+                    <div class="row">
+                        <span>
+                            <p class="headerfont">TIME:</p>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="headerfont" id="minrem"></span><span class="headerfont">:</span><span
+                            class="headerfont" id="secrem"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row control-buttons">
+                <button class="btn btn-light border p-1" onclick="getDirections()">Directions
+                </button>
+                <button class="btn btn-light border p-1" onclick="window.location.reload()">New Game</button>
+                <button class="btn btn-light border p-1" onclick="stopGame()">Quit</button>
+            </div>
+        </header>
         <main id="insertion">
 
         </main>
+
+        <main id="large">
+
+        </main>
+        <div class="panel panel-default rounded bg-light panelmargin" id="here">
+            <div class="panel-body p-3 text-center scoreboardfont">
+                <div class="row justify-content-center">
+                    <p style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: teal">
+                        <b>SHOCK WORKERS (High Scores)</b>
+                    </p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <span>
+                            <p><b>PLAYER</b></p>
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <span>
+                            <p><b>SCORE</b></p>
+                        </span>
+                    </div>
+                </div>
+                <div id="players">
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default rounded bg-light panelmargin" id="direct">
+            <div class="panel-body">
+                <div class="row justify-content-center">
+                    <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: firebrick">
+                        <b>MOON MINER</b>
+                    </h1>
+                </div>
+                <div class="row m-2">
+                    <ol>
+                        <li>Mining: To start mining, click anywhere on the moon. To begin with, you will yield one
+                            portion
+                            of
+                            cheese for every click.</li>
+                        <li>Upgrading: Once you have enough cheese, you can use the cheese to purchase equipment. Each
+                            piece
+                            of equipment will increase
+                            your yield by a specified amount:
+                            <ul>
+                                <li>Pick axes increase your yield by 1 portion for each pick axe on each click.</li>
+                                <li>Carts increase your yield by 5 portions for each cart on each click.</li>
+                                <li>Rovers and mousebots are automated machines and so will increase your yield
+                                    automatically every 3
+                                    seconds:
+                                    <ul>
+                                        <li>rovers increase your yield by 20 every 3 seconds</li>
+                                        <li>mousebots increase your yield by 100 every 3 seconds</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            Note that the price of each type of equipment increases after each purchase.
+                        </li>
+                        <li>Time: To begin with, you have 3 minutes to reach your first goal: mine 1000 portions of
+                            cheese.
+                            If you reach your goal before time runs out, you are
+                            awarded an extra 3 minutes. This process is repeated for the rest of the game. Keep in mind
+                            that
+                            while the time bonus is always 3 minutes, your goal will
+                            increase by a factor of 3 each time a time bonus is awarded. If your time runs out before
+                            you
+                            reach
+                            the next goal, the game is over.</li>
+                    </ol>
+                </div>
+                <div class="row justify-content-center">
+                    <button class="btn btn-danger rounded mt-2 mb-2" onclick="removeDirections()">Close</button>
+                </div>
+            </div>
+        </div>
     </container-fluid>
 
     <!-- Optional JavaScript -->
